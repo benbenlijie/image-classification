@@ -26,3 +26,22 @@
 3. 在设置权重的初始值时，采用高斯分布，mean设置在0，随着层数添加，慢慢增大stddev，最低层的conv采用的0.001，逐层加到0.01，这样效果比较好。
 4. pool层采用了max+avg+avg，avg采用重叠采样，即将stride设为1。
 
+----
+
+### 2017-06-08提升结果
+
+根据AlexNet的原理对模型结构进行了调整，使得test accuracy提升到了73.6%，提升效果还是很显著的。
+修改后的结构是：
+
+| 输入32x32x3 |
+| ----- |
+| 5x5 conv. 64 stride 1 ReLU |
+| 3x3 max-pooling stride 2|
+| 5x5 conv. 64 stride 1 ReLU|
+| 3x3 max-pooling stride 2|
+| flatten |
+| 384 fully-connect ReLU |
+| 192 fully-connect ReLU |
+| dropout |
+| 10-way softmax|
+
